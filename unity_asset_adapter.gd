@@ -385,7 +385,7 @@ class SceneHandler:
 
 	func preprocess_asset(pkgasset: Object, tmpdir: String, thread_subdir: String, path: String, data_buf: PackedByteArray, unique_texture_map: Dictionary = {}) -> String:
 		var is_prefab = pkgasset.orig_pathname.get_extension().to_lower() != "unity"
-		var new_pathname: String = pkgasset.pathname.get_basename() + (".prefab.tscn" if is_prefab else ".tscn")
+		var new_pathname: String = pkgasset.pathname.get_basename().replace(".prefab", "") + (".prefab.tscn" if is_prefab else ".tscn")
 		return new_pathname
 
 	func write_godot_asset(pkgasset, temp_path) -> bool:
