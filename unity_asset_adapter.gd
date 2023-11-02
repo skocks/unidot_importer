@@ -301,7 +301,10 @@ class YamlHandler:
 		var godot_resource: Resource = null
 
 		if pkgasset.parsed_meta.main_object_id != -1 and pkgasset.parsed_meta.main_object_id != 0:
-			main_asset = pkgasset.parsed_asset.assets[pkgasset.parsed_meta.main_object_id]
+			if pkgasset.parsed_asset.assets.has(pkgasset.parsed_meta.main_object_id):
+				main_asset = pkgasset.parsed_asset.assets[pkgasset.parsed_meta.main_object_id]
+			else:
+				pkgasset.log_fail("Asset " + pkgasset.pathname + " guid " + pkgasset.parsed_meta.guid + " has non matching object id " + str(pkgasset.parsed_meta.main_object_id) + "!")				
 		else:
 			pkgasset.log_fail("Asset " + pkgasset.pathname + " guid " + pkgasset.parsed_meta.guid + " has no main object id!")
 		var new_pathname: String = pkgasset.pathname
@@ -333,7 +336,10 @@ class YamlHandler:
 		var godot_resource: Resource = null
 
 		if pkgasset.parsed_meta.main_object_id != -1 and pkgasset.parsed_meta.main_object_id != 0:
-			main_asset = pkgasset.parsed_asset.assets[pkgasset.parsed_meta.main_object_id]
+			if pkgasset.parsed_asset.assets.has(pkgasset.parsed_meta.main_object_id):
+				main_asset = pkgasset.parsed_asset.assets[pkgasset.parsed_meta.main_object_id]
+			else:
+				pkgasset.log_fail("Asset " + pkgasset.pathname + " guid " + pkgasset.parsed_meta.guid + " has non matching object id " + str(pkgasset.parsed_meta.main_object_id) + "!")
 		else:
 			pkgasset.log_fail("Asset " + pkgasset.pathname + " guid " + pkgasset.parsed_meta.guid + " has no main object id!")
 
